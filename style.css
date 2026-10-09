@@ -1,0 +1,178 @@
+/*
+Theme Name: Fixora
+Theme URI: https://github.com/nourhb/fixora-home-services-theme
+Author: Nour El Houda Bouajila
+Author URI: https://nour-el-houda-bouajila.rf.gd/
+Description: Fixora is a bold Full Site Editing theme built for home-service businesses — plumbers, HVAC technicians and electricians. Deep navy and energetic orange design, 24/7 emergency CTA hero, trust badges, services grid with pricing hints, how-it-works steps, animated stats, testimonials, FAQ, service-area map section and a quote-booking CTA — everything a trades business needs to win jobs online.
+Version: 1.0.0
+Requires at least: 6.4
+Tested up to: 6.9
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: fixora
+Tags: full-site-editing, block-patterns, block-styles, custom-colors, custom-logo, featured-images, threaded-comments, translation-ready, wide-blocks, editor-style
+*/
+
+/* ---------- Base polish ---------- */
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+/* Skip link visibility */
+.skip-link:focus {
+	z-index: 99999;
+}
+
+/* ---------- Service cards ---------- */
+
+.fixora-card {
+	transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.fixora-card:hover {
+	transform: translateY(-6px);
+	box-shadow: 0 24px 48px -16px rgba(11, 42, 74, .28);
+}
+
+.fixora-card img {
+	transition: transform .6s ease;
+}
+
+.fixora-card:hover img {
+	transform: scale(1.05);
+}
+
+/* Status badges */
+.fixora-badge {
+	display: inline-block;
+	padding: .35rem .9rem;
+	border-radius: 999px;
+	font-size: .72rem;
+	font-weight: 700;
+	letter-spacing: .12em;
+	text-transform: uppercase;
+}
+
+.fixora-badge--emergency { background: #f97316; color: #fff; }
+.fixora-badge--guarantee { background: #15803d; color: #fff; }
+.fixora-badge--navy { background: #0b2a4a; color: #fff; }
+
+/* ---------- Buttons ---------- */
+
+.wp-block-button__link {
+	transition: transform .25s ease, box-shadow .25s ease, background-color .25s ease;
+}
+
+.wp-block-button__link:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 12px 24px -8px rgba(249, 115, 22, .5);
+}
+
+/* ---------- Emergency strip pulse ---------- */
+
+.fixora-pulse {
+	position: relative;
+}
+
+.fixora-pulse::before {
+	content: "";
+	position: absolute;
+	inset: -4px;
+	border-radius: inherit;
+	border: 2px solid rgba(249, 115, 22, .55);
+	animation: fixora-ping 2.2s ease-out infinite;
+	pointer-events: none;
+}
+
+@keyframes fixora-ping {
+	0% { transform: scale(.98); opacity: .9; }
+	70% { transform: scale(1.04); opacity: 0; }
+	100% { transform: scale(1.04); opacity: 0; }
+}
+
+/* ---------- Scroll reveal ---------- */
+
+.fixora-reveal {
+	opacity: 0;
+	transform: translateY(28px);
+	transition: opacity .7s ease, transform .7s ease;
+}
+
+.fixora-reveal.is-visible {
+	opacity: 1;
+	transform: none;
+}
+
+/* ---------- Back to top ---------- */
+
+.fixora-to-top {
+	position: fixed;
+	right: 1.5rem;
+	bottom: 1.5rem;
+	width: 3rem;
+	height: 3rem;
+	border: 0;
+	border-radius: 50%;
+	background: #f97316;
+	color: #fff;
+	font-size: 1.25rem;
+	line-height: 1;
+	cursor: pointer;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(12px);
+	transition: opacity .3s ease, transform .3s ease, visibility .3s;
+	z-index: 999;
+}
+
+.fixora-to-top.is-visible {
+	opacity: 1;
+	visibility: visible;
+	transform: none;
+}
+
+.fixora-to-top:hover {
+	background: #0b2a4a;
+	color: #fdba74;
+}
+
+/* ---------- Focus states ---------- */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+	outline: 3px solid #f97316;
+	outline-offset: 3px;
+}
+
+/* ---------- Print ---------- */
+
+@media print {
+	.fixora-to-top,
+	.site-header,
+	.site-footer {
+		display: none;
+	}
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+	html { scroll-behavior: auto; }
+	.fixora-pulse::before { animation: none; }
+	.fixora-reveal { opacity: 1; transform: none; transition: none; }
+	.fixora-card, .fixora-card img, .wp-block-button__link { transition: none; }
+	.fixora-card:hover { transform: none; }
+}
